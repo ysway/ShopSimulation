@@ -1,2 +1,2 @@
-rootProject.name='COMPSYS302 Android Project'
 include ':app'
+rootProject.name = "Group11android"

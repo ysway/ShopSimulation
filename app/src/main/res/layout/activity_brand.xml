@@ -8,20 +8,8 @@
     android:padding="10dp"
     tools:context=".MainActivity">
 
-    <!-- 等下再做
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lvPhones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
-    -->
-
     <ListView
-        android:id="@+id/lvBrands"
+        android:id="@+id/lvPhones"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
