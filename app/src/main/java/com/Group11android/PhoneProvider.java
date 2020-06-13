@@ -17,7 +17,9 @@ public class PhoneProvider {
             "O06","O07","O08","O09","O10"};
 
     static int[] coveraddrs = {R.drawable.h1, R.drawable.h2, R.drawable.h3, R.drawable.h4,R.drawable.h5,
-            R.drawable.h6,R.drawable.h7,R.drawable.h8,R.drawable.h9,R.drawable.h10};
+            R.drawable.h6,R.drawable.h7,R.drawable.h8,R.drawable.h9,R.drawable.h10,R.drawable.s1,R.drawable.s2,
+            R.drawable.s3,R.drawable.s4,R.drawable.s5,R.drawable.s6,R.drawable.s7,R.drawable.s8,R.drawable.s9,
+            R.drawable.s10};
 
 
     public static ArrayList<Phoneh1> generateData() {
