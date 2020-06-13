@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String BRAND_DETAIL_KEY = "brand";
 
+    public static int pos = 0;
     ListView lvBrands;
     BrandAdapter brandAdapter;
     ArrayList<Brand> aBrands;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 // Launch the detail view passing brand as an extra
                 Intent intent = new Intent(MainActivity.this, BrandDetailActivity.class);
                 intent.putExtra(BRAND_DETAIL_KEY, brandAdapter.getItem(position));
+                pos = (int) id;
                 startActivity(intent);
             }
         });
@@ -114,6 +116,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
 

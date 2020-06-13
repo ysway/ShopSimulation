@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BrandProvider {
 
-    static String[] titles = {"Huawei", "Apple", "Samsung",};
+    static String[] titles = {"Huawei", "Samsung", "Oppo",};
 
     static String[] ids = {"001", "002", "003"};
 

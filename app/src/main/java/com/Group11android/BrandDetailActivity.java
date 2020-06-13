@@ -47,8 +47,8 @@ public class BrandDetailActivity extends AppCompatActivity {
         lvPhones = (ListView) findViewById(R.id.lvPhones);
         ArrayList<Phone> aPhones = new ArrayList<Phone>();
 
+        aPhones = PhoneProvider.generateData(MainActivity.pos);
 
-        aPhones = PhoneProvider.generateData();
         phoneAdapter = new PhoneAdapter(this, aPhones);
 
         lvPhones.setAdapter(phoneAdapter);
