@@ -1,2 +1,3 @@
 include ':app'
-rootProject.name = "OrderApp"
+rootProject.name = "Group11android"
+

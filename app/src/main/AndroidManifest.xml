@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.orderapp">
+
+    package="com.Group11android">
+
 
     <application
         android:allowBackup="true"
@@ -16,6 +18,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".BrandDetailActivity"
+            android:label="@string/title_activity_brand_detail" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".PhoneDetailActivity"
+            android:label="@string/title_activity_phone_detail" >
+        </activity>
+
     </application>
 
 </manifest>
