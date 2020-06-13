@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,10 +36,21 @@ public class MainActivity extends AppCompatActivity {
     ListView lvBrands;
     BrandAdapter brandAdapter;
 
+    private ArrayList<ExampleItem> mExampleList;
+    private RecyclerView mRecyclerView;
+    private ExampleAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+    //private Button Click;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        createExampleList();
+        buildReCyclerView();
+
 
 
         lvBrands = (ListView) findViewById(R.id.lvBrands);
@@ -58,7 +72,34 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,"No matched item has been found",Toast.LENGTH_LONG).show();
 
     }
+    public void changeItem(int position, String text){
+        mExampleList.get(position).changeText1(text);
+        mAdapter.notifyItemChanged(position);
+    }
 
+    public void createExampleList(){
+        mExampleList = new ArrayList<>();
+
+        mExampleList.add(new ExampleItem(R.drawable.b001,"Top1"));
+        mExampleList.add(new ExampleItem(R.drawable.b002,"Top2"));
+        mExampleList.add(new ExampleItem(R.drawable.b003,"Top3"));
+    }
+    public void buildReCyclerView(){
+        mRecyclerView = findViewById((R.id.recyclerView));
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new ExampleAdapter(mExampleList);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListerner(new ExampleAdapter.OnItemClickListerner() {
+            @Override
+            public void onItemClick(int position) {
+                changeItem(position,"Clicked");
+            }
+        });
+    }
 
     public void setupBrandSelectedListener() {
         lvBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
