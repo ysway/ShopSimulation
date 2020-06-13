@@ -3,8 +3,8 @@
     <string name="app_name">Shopping</string>
 
     <string name="title_activity_book_detail">BookDetailActivity</string>
-    <string name="title_activity_brand_detail">BrandDetailActivity</string>
-    <string name="title_activity_phone_detail">PhoneDetailActivity</string>
+    <string name="title_activity_brand_detail">Brand</string>
+    <string name="title_activity_phone_detail">Phone</string>
     <string name="buy">Buy</string>
 
 </resources>

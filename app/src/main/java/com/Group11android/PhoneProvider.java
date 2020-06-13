@@ -12,7 +12,7 @@ public class PhoneProvider {
             "OPPO FindX2 pro","OPPO FindX2 Lite","OPPO FindX",
             "OPPO Reno2","OPPO Reno2z","OPPO Reno10x","OPPO A91","OPPO A9","OPPO AX7","OPPO AX5s"};
 
-    static String[] ids = {"H01", "H02", "H03", "H04", "H06", "H07", "H08", "H09", "H10", "S01",
+    static String[] ids = {"H01", "H02", "H03", "H04","H05", "H06", "H07", "H08", "H09", "H10", "S01",
             "S02","S03","S04","S05","S06","S07","S08","S09","S10","O01","O02","O03","O04","O05",
             "O06","O07","O08","O09","O10"};
 
@@ -22,7 +22,7 @@ public class PhoneProvider {
             R.drawable.s10};
 
 
-    public static ArrayList<Phoneh1> generateData() {
+    public static ArrayList<Phone> generateData() {
         ArrayList<Phone> phones = new ArrayList<Phone>();
 
 

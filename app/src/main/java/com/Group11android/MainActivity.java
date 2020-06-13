@@ -13,7 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         lvBrands = (ListView) findViewById(R.id.lvBrands);
         ArrayList<Brand> aBrands = new ArrayList<Brand>();
 
@@ -45,7 +49,14 @@ public class MainActivity extends AppCompatActivity {
 
         setupBrandSelectedListener();
 
+
     }
+
+    public void SearchForContent(View v){
+        Toast.makeText(this,"No matched item has been found",Toast.LENGTH_LONG).show();
+
+    }
+
 
     public void setupBrandSelectedListener() {
         lvBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {

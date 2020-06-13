@@ -23,7 +23,7 @@
         android:layout_marginBottom="8dp"
         android:layout_toRightOf="@+id/ivPhoneCover"
         android:text="PhMk"
-        android:textSize="35sp" />
+        style="@style/PhoneName"/>
 
     <TextView
         android:id="@+id/tvSold"
@@ -37,6 +37,6 @@
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@+id/ivPhoneCover"
         android:text="Sold"
-        android:textSize="30sp" />
+        style="@style/Stock" />
 
 </RelativeLayout>

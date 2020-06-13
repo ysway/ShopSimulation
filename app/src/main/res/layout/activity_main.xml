@@ -6,7 +6,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+    android:background="@color/MainBackground"
     tools:context=".MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <EditText
+            android:id="@+id/EditSearch"
+            android:hint = "Search for content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <Button
+            android:id="@+id/Search_Button"
+            android:icon="@android:drawable/ic_menu_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="5dp"
+            android:onClick="SearchForContent"
+            android:textSize="40sp"/>
+    </RelativeLayout>
+
 
     <!-- 等下再做
     <ScrollView

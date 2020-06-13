@@ -29,4 +29,5 @@ public class Brand implements Serializable {
     public int getCover(){
         return CoverAddr;
     }
+
 }
