@@ -9,7 +9,7 @@ public class BrandProvider {
 
     static String[] ids = {"001", "002", "003"};
 
-    static int[] coveraddrs = {R.drawable.b001, R.drawable.b002, R.drawable.b003};
+    static int[] coveraddrs = {R.drawable.huawei, R.drawable.samsung, R.drawable.oppo};
 
     public static ArrayList<Brand> generateData() {
         ArrayList<Brand> brands = new ArrayList<Brand>();
@@ -25,6 +25,4 @@ public class BrandProvider {
         }
         return brands;
     }
-
-
 }
