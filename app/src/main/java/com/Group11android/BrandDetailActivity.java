@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class BrandDetailActivity extends AppCompatActivity {
@@ -37,7 +38,6 @@ public class BrandDetailActivity extends AppCompatActivity {
 
     ListView lvPhones;
     PhoneAdapter phoneAdapter;
-    ArrayList<Phone> aphones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,14 +89,14 @@ public class BrandDetailActivity extends AppCompatActivity {
                 searchItem.collapseActionView();
 
                 //complete SearchActivity by yourself
-                Intent intent = new Intent(BrandDetailActivity.this, BrandDetailActivity.class);
-                for(int i = 0; i < 10; i++) {
-                    if(phoneAdapter.getItem(i).getPhMk().equals(query)) {
-                        intent.putExtra(PHONE_DETAIL_KEY, phoneAdapter.getItem(i));
+                for(int i = 0; i < 30; i++) {
+                    if (PhoneProvider.phmks[i].equals(query)) {
+                        Intent intent = new Intent(BrandDetailActivity.this, PhoneDetailActivity.class);
+                        intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[i], MainActivity.soldList[i], PhoneProvider.phmks[i], PhoneProvider.coveraddrs[i]));
+                        startActivity(intent);
                         break;
                     }
                 }
-                startActivity(intent);
 
                 /*
                 // Set activity title to search query

@@ -9,16 +9,16 @@ import java.util.ArrayList;
 
 public class Phone implements Serializable {
     private String id;
-    private static int sold;
+    private int sold;
     private String PhMk;
     private int CoverAddr;
 
 
 
-    public Phone(String id, String PhMk, int CoverAddr){
+    public Phone(String id, int sold, String PhMk, int CoverAddr){
 
         this.id = id;
-        this.sold = 0;
+        this.sold = sold;
         this.PhMk = PhMk;
         this.CoverAddr = CoverAddr;
     }
