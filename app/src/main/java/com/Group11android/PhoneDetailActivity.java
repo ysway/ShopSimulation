@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -30,6 +32,7 @@ public class PhoneDetailActivity extends AppCompatActivity {
     private ImageView ivPhoneCover;
     private TextView tvPhMk;
     private TextView tvSold;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +42,19 @@ public class PhoneDetailActivity extends AppCompatActivity {
         ivPhoneCover = (ImageView) findViewById(R.id.ivPhoneCover);
         tvPhMk = (TextView) findViewById(R.id.tvPhMk);
         tvSold = (TextView) findViewById(R.id.tvSold);
+        button = (Button) findViewById(R.id.button);
 
         Intent thisIntent = getIntent();
         // Use the phone to populate the data into our views
-        Phone phone = (Phone) thisIntent.getSerializableExtra(BrandDetailActivity.PHONE_DETAIL_KEY);
+        final Phone phone = (Phone) thisIntent.getSerializableExtra(BrandDetailActivity.PHONE_DETAIL_KEY);
         loadPhone(phone);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phone.buy();
+                tvSold.setText(String.valueOf(phone.getSold()));
+            }
+        });
     }
 
     private void loadPhone(Phone phone) {
@@ -52,6 +63,8 @@ public class PhoneDetailActivity extends AppCompatActivity {
         this.setTitle(phone.getPhMk());
 
         tvPhMk.setText(phone.getPhMk());
+
+        tvSold.setText(String.valueOf(phone.getSold()));
 
         //String mDrawableName = phone.getCover();
         //int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());

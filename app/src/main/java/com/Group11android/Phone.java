@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Phone implements Serializable {
     private String id;
-    private int sold;
+    private static int sold;
     private String PhMk;
     private int CoverAddr;
 
