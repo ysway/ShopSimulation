@@ -52,7 +52,8 @@ public class PhoneDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 phone.buy();
-                tvSold.setText(String.valueOf(phone.getSold()));
+                MainActivity.soldList[Integer.parseInt(phone.getId())] = MainActivity.soldList[Integer.parseInt(phone.getId())] + 1;
+                tvSold.setText(String.valueOf(MainActivity.soldList[Integer.parseInt(phone.getId())]));
             }
         });
     }
@@ -64,7 +65,7 @@ public class PhoneDetailActivity extends AppCompatActivity {
 
         tvPhMk.setText(phone.getPhMk());
 
-        tvSold.setText(String.valueOf(phone.getSold()));
+        tvSold.setText(String.valueOf(MainActivity.soldList[Integer.parseInt(phone.getId())]));
 
         //String mDrawableName = phone.getCover();
         //int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());

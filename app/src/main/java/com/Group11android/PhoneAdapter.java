@@ -64,8 +64,9 @@ public class PhoneAdapter extends ArrayAdapter<Phone> {
         }
 
         //Populate the data into the template view using the data object
+        assert phone != null;
         viewHolder.tvPhMk.setText(phone.getPhMk());
-        viewHolder.tvSold.setText(String.valueOf(phone.getSold()));
+        viewHolder.tvSold.setText(String.valueOf(MainActivity.soldList[Integer.parseInt(phone.getId())]));
 
         int resID = phone.getCover();
 

@@ -1,11 +1,11 @@
 <resources>
 
     <string name="app_name">Shopping</string>
-
     <string name="title_activity_book_detail">BookDetailActivity</string>
-    <string name="title_activity_brand_detail">Brand</string>
-    <string name="title_activity_phone_detail">Phone</string>
-    <string name="buy">Buy</string>
 
+    <string name="title_activity_brand_detail">BrandDetail</string>
+    <string name="title_activity_phone_detail">PhoneDetail</string>
+
+    <string name="buy">Buy</string>
 </resources>
 

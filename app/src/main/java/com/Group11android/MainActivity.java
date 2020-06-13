@@ -20,15 +20,18 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String BRAND_DETAIL_KEY = "brand";
 
+    public static int[] soldList = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // zeros(30)
+
+    public static int pos = 0;
     ListView lvBrands;
     BrandAdapter brandAdapter;
-    ArrayList<Brand> aBrands;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         lvBrands = (ListView) findViewById(R.id.lvBrands);
         ArrayList<Brand> aBrands = new ArrayList<Brand>();
-
 
         aBrands = BrandProvider.generateData();
         brandAdapter = new BrandAdapter(this, aBrands);
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 // Launch the detail view passing brand as an extra
                 Intent intent = new Intent(MainActivity.this, BrandDetailActivity.class);
                 intent.putExtra(BRAND_DETAIL_KEY, brandAdapter.getItem(position));
+                pos = (int) id;
                 startActivity(intent);
             }
         });
@@ -88,14 +91,14 @@ public class MainActivity extends AppCompatActivity {
                 searchItem.collapseActionView();
 
                 //complete SearchActivity by yourself
-                Intent intent = new Intent(MainActivity.this, BrandDetailActivity.class);
-                for(int i = 0; i < 10; i++) {
-                    if(brandAdapter.getItem(i).getBrand().equals(query)) {
-                        intent.putExtra(BRAND_DETAIL_KEY, brandAdapter.getItem(i));
+                for(int i = 0; i < 30; i++) {
+                    if (PhoneProvider.phmks[i].equals(query)) {
+                        Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
+                        intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[i], MainActivity.soldList[i], PhoneProvider.phmks[i], PhoneProvider.coveraddrs[i]));
+                        startActivity(intent);
                         break;
                     }
                 }
-                startActivity(intent);
 
                 /*
                 // Set activity title to search query
@@ -125,6 +128,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
 
