@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             });
             Mbuyclick = MainActivity.BuyClick;
         }
-        refresh(1500);
+        refresh(100);
     }
 
     public void refresh(int ms) {
@@ -146,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, BrandDetailActivity.class);
                 intent.putExtra(BRAND_DETAIL_KEY, brandAdapter.getItem(position));
                 pos = (int) id;
+                BrandDetailActivity.Bbuyclick = -1;
+                MainActivity.Mbuyclick = -1;
                 startActivity(intent);
             }
         });

@@ -66,7 +66,7 @@ public class BrandDetailActivity extends AppCompatActivity {
             setupPhoneSelectedListener();
             Bbuyclick = MainActivity.BuyClick;
         }
-        refresh(1500);
+        refresh(100);
     }
 
     public void refresh(int ms) {
@@ -87,6 +87,8 @@ public class BrandDetailActivity extends AppCompatActivity {
                 // Launch the detail view passing phone as an extra
                 Intent intent = new Intent(BrandDetailActivity.this, PhoneDetailActivity.class);
                 intent.putExtra(PHONE_DETAIL_KEY, phoneAdapter.getItem(position));
+                BrandDetailActivity.Bbuyclick = -1;
+                MainActivity.Mbuyclick = -1;
                 startActivity(intent);
             }
         });
