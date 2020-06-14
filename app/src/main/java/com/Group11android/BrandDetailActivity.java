@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -38,25 +39,45 @@ public class BrandDetailActivity extends AppCompatActivity {
 
     ListView lvPhones;
     PhoneAdapter phoneAdapter;
+    public static int Bbuyclick = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brand);
 
-        lvPhones = (ListView) findViewById(R.id.lvPhones);
-        ArrayList<Phone> aPhones = new ArrayList<Phone>();
+        content();
 
-        aPhones = PhoneProvider.generateData(MainActivity.pos);
+    }
 
-        phoneAdapter = new PhoneAdapter(this, aPhones);
+    public void content(){
+        if (Bbuyclick != MainActivity.BuyClick) {
+            lvPhones = (ListView) findViewById(R.id.lvPhones);
+            ArrayList<Phone> aPhones = new ArrayList<Phone>();
 
-        lvPhones.setAdapter(phoneAdapter);
+            aPhones = PhoneProvider.generateData(MainActivity.pos);
 
-        LinearLayoutManager lm = new LinearLayoutManager(this);
+            phoneAdapter = new PhoneAdapter(this, aPhones);
 
-        setupPhoneSelectedListener();
+            lvPhones.setAdapter(phoneAdapter);
 
+            LinearLayoutManager lm = new LinearLayoutManager(this);
+
+            setupPhoneSelectedListener();
+            Bbuyclick = MainActivity.BuyClick;
+        }
+        refresh(1500);
+    }
+
+    public void refresh(int ms) {
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                content();
+            }
+        };
+        handler.postDelayed(runnable, ms);
     }
 
     public void setupPhoneSelectedListener() {

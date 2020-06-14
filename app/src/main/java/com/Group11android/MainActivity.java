@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static int[] soldList = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // zeros(30)
 
+    public static int BuyClick = 0;
+    public static int Mbuyclick = 1;
+
     public static int pos = 0;
 
     ListView lvBrands;
@@ -51,76 +54,76 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void content() {
+        if (Mbuyclick != MainActivity.BuyClick) {
+            lvBrands = (ListView) findViewById(R.id.lvBrands);
+            ArrayList<Brand> aBrands = new ArrayList<Brand>();
 
-        lvBrands = (ListView) findViewById(R.id.lvBrands);
-        ArrayList<Brand> aBrands = new ArrayList<Brand>();
+            aBrands = BrandProvider.generateData();
+            brandAdapter = new BrandAdapter(this, aBrands);
 
-        aBrands = BrandProvider.generateData();
-        brandAdapter = new BrandAdapter(this, aBrands);
+            lvBrands.setAdapter(brandAdapter);
 
-        lvBrands.setAdapter(brandAdapter);
+            LinearLayoutManager lm = new LinearLayoutManager(this);
 
-        LinearLayoutManager lm = new LinearLayoutManager(this);
+            setupBrandSelectedListener();
 
-        setupBrandSelectedListener();
+            // Find best sold 3
+            double[] TsoldList = new double[30];
+            for (int index = 0; index < 30; index++) {
+                TsoldList[index] = soldList[index];
+            }
 
-        // Find best sold 3
-        double[] TsoldList = new double[30];
-        for (int index = 0; index < 30; index++) {
-            TsoldList[index] = soldList[index];
+            final int[] topPhs = maxKIndex(TsoldList, 3);
+
+
+            button1 = (Button) findViewById(R.id.button1);
+            button2 = (Button) findViewById(R.id.button2);
+            button3 = (Button) findViewById(R.id.button3);
+
+
+            Drawable ph1 = getDrawable(PhoneProvider.coveraddrs[topPhs[0]]);
+            assert ph1 != null;
+            ph1.setBounds(0, 0, 0, 0);
+
+            Drawable ph2 = getDrawable(PhoneProvider.coveraddrs[topPhs[1]]);
+            assert ph2 != null;
+            ph2.setBounds(0, 0, 0, 0);
+
+            Drawable ph3 = getDrawable(PhoneProvider.coveraddrs[topPhs[2]]);
+            assert ph3 != null;
+            ph3.setBounds(0, 0, 0, 0);
+
+
+            button1.setBackground(ph1);
+            button2.setBackground(ph2);
+            button3.setBackground(ph3);
+
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
+                    intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[topPhs[0]], MainActivity.soldList[topPhs[0]], PhoneProvider.phmks[topPhs[0]], PhoneProvider.coveraddrs[topPhs[0]]));
+                    startActivity(intent);
+                }
+            });
+            button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
+                    intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[topPhs[1]], MainActivity.soldList[topPhs[1]], PhoneProvider.phmks[topPhs[1]], PhoneProvider.coveraddrs[topPhs[1]]));
+                    startActivity(intent);
+                }
+            });
+            button3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
+                    intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[topPhs[2]], MainActivity.soldList[topPhs[2]], PhoneProvider.phmks[topPhs[2]], PhoneProvider.coveraddrs[topPhs[2]]));
+                    startActivity(intent);
+                }
+            });
+            Mbuyclick = MainActivity.BuyClick;
         }
-
-        final int[] topPhs = maxKIndex(TsoldList, 3);
-
-
-
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-
-
-        Drawable ph1 = getDrawable(PhoneProvider.coveraddrs[topPhs[0]]);
-        assert ph1 != null;
-        ph1.setBounds(0, 0, 0, 0);
-
-        Drawable ph2 = getDrawable(PhoneProvider.coveraddrs[topPhs[1]]);
-        assert ph2 != null;
-        ph2.setBounds(0, 0, 0, 0);
-
-        Drawable ph3 = getDrawable(PhoneProvider.coveraddrs[topPhs[2]]);
-        assert ph3 != null;
-        ph3.setBounds(0, 0, 0, 0);
-
-
-        button1.setBackground(ph1);
-        button2.setBackground(ph2);
-        button3.setBackground(ph3);
-
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
-                intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[topPhs[0]], MainActivity.soldList[topPhs[0]], PhoneProvider.phmks[topPhs[0]], PhoneProvider.coveraddrs[topPhs[0]]));
-                startActivity(intent);
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
-                intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[topPhs[1]], MainActivity.soldList[topPhs[1]], PhoneProvider.phmks[topPhs[1]], PhoneProvider.coveraddrs[topPhs[1]]));
-                startActivity(intent);
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
-                intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[topPhs[2]], MainActivity.soldList[topPhs[2]], PhoneProvider.phmks[topPhs[2]], PhoneProvider.coveraddrs[topPhs[2]]));
-                startActivity(intent);
-            }
-        });
-
         refresh(1500);
     }
 

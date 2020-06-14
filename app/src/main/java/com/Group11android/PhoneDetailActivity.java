@@ -55,6 +55,7 @@ public class PhoneDetailActivity extends AppCompatActivity {
                     phone.buy();
                     MainActivity.soldList[Integer.parseInt(phone.getId())] = MainActivity.soldList[Integer.parseInt(phone.getId())] + 1;
                     tvSold.setText(String.valueOf(MainActivity.soldList[Integer.parseInt(phone.getId())]));
+                    MainActivity.BuyClick += 1;
                 }
             }
         });
