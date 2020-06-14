@@ -95,6 +95,10 @@ public class BrandDetailActivity extends AppCompatActivity {
                         intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[i], MainActivity.soldList[i], PhoneProvider.phmks[i], PhoneProvider.coveraddrs[i]));
                         startActivity(intent);
                         break;
+                    } else if (i == 29) {
+                        Intent intent = new Intent(BrandDetailActivity.this, PhoneDetailActivity.class);
+                        intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone("null", 0, "NOT FOUND", R.drawable.ic_nocover));
+                        startActivity(intent);
                     }
                 }
 

@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -86,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[i], MainActivity.soldList[i], PhoneProvider.phmks[i], PhoneProvider.coveraddrs[i]));
                         startActivity(intent);
                         break;
+                    }
+                    if (i == 29) {
+                        Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
+                        intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone("null", 0, "NOT FOUND", R.drawable.ic_nocover));
+                        startActivity(intent);
                     }
                 }
 
