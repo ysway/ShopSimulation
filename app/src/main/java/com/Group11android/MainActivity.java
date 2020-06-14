@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,16 +37,20 @@ public class MainActivity extends AppCompatActivity {
 
     ListView lvBrands;
     BrandAdapter brandAdapter;
+    Button button1;
+    Button button2;
+    Button button3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Button button1;
-        Button button2;
-        Button button3;
-
 
         setContentView(R.layout.activity_main);
+
+        content();
+    }
+
+    public void content() {
 
         lvBrands = (ListView) findViewById(R.id.lvBrands);
         ArrayList<Brand> aBrands = new ArrayList<Brand>();
@@ -115,8 +120,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        refresh(1500);
     }
 
+    public void refresh(int ms) {
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                content();
+            }
+        };
+        handler.postDelayed(runnable, ms);
+    }
 
     public void setupBrandSelectedListener() {
         lvBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -188,10 +205,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void refresh() {
-        onCreate(null);
     }
 
     public static int[] maxKIndex(double[] array, int top_k) {

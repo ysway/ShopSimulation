@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/ivBrandCover"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_width="75dp"
+        android:layout_height="85dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -19,8 +19,8 @@
         android:layout_width="247dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:layout_toRightOf="@+id/ivBrandCover"
