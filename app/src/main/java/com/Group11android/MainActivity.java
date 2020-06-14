@@ -6,17 +6,23 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -27,12 +33,18 @@ public class MainActivity extends AppCompatActivity {
     public static int[] soldList = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // zeros(30)
 
     public static int pos = 0;
+
     ListView lvBrands;
     BrandAdapter brandAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Button button1;
+        Button button2;
+        Button button3;
+
+
         setContentView(R.layout.activity_main);
 
         lvBrands = (ListView) findViewById(R.id.lvBrands);
@@ -47,7 +59,64 @@ public class MainActivity extends AppCompatActivity {
 
         setupBrandSelectedListener();
 
+        // Find best sold 3
+        double[] TsoldList = new double[30];
+        for (int index = 0; index < 30; index++) {
+            TsoldList[index] = soldList[index];
+        }
+
+        final int[] topPhs = maxKIndex(TsoldList, 3);
+
+
+
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+
+
+        Drawable ph1 = getDrawable(PhoneProvider.coveraddrs[topPhs[0]]);
+        assert ph1 != null;
+        ph1.setBounds(0, 0, 0, 0);
+
+        Drawable ph2 = getDrawable(PhoneProvider.coveraddrs[topPhs[1]]);
+        assert ph2 != null;
+        ph2.setBounds(0, 0, 0, 0);
+
+        Drawable ph3 = getDrawable(PhoneProvider.coveraddrs[topPhs[2]]);
+        assert ph3 != null;
+        ph3.setBounds(0, 0, 0, 0);
+
+
+        button1.setBackground(ph1);
+        button2.setBackground(ph2);
+        button3.setBackground(ph3);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
+                intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[topPhs[0]], MainActivity.soldList[topPhs[0]], PhoneProvider.phmks[topPhs[0]], PhoneProvider.coveraddrs[topPhs[0]]));
+                startActivity(intent);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
+                intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[topPhs[1]], MainActivity.soldList[topPhs[1]], PhoneProvider.phmks[topPhs[1]], PhoneProvider.coveraddrs[topPhs[1]]));
+                startActivity(intent);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
+                intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[topPhs[2]], MainActivity.soldList[topPhs[2]], PhoneProvider.phmks[topPhs[2]], PhoneProvider.coveraddrs[topPhs[2]]));
+                startActivity(intent);
+            }
+        });
     }
+
 
     public void setupBrandSelectedListener() {
         lvBrands.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -85,8 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone(PhoneProvider.ids[i], MainActivity.soldList[i], PhoneProvider.phmks[i], PhoneProvider.coveraddrs[i]));
                         startActivity(intent);
                         break;
-                    }
-                    if (i == 29) {
+                    } else if (i == 29) {
                         Intent intent = new Intent(MainActivity.this, PhoneDetailActivity.class);
                         intent.putExtra(BrandDetailActivity.PHONE_DETAIL_KEY, new Phone("null", 0, "NOT FOUND", R.drawable.ic_nocover));
                         startActivity(intent);
@@ -120,6 +188,30 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void refresh() {
+        onCreate(null);
+    }
+
+    public static int[] maxKIndex(double[] array, int top_k) {
+        double[] max = new double[top_k];
+        int[] maxIndex = new int[top_k];
+        Arrays.fill(max, Double.NEGATIVE_INFINITY);
+        Arrays.fill(maxIndex, -1);
+
+        top: for(int i = 0; i < array.length; i++) {
+            for(int j = 0; j < top_k; j++) {
+                if(array[i] > max[j]) {
+                    for(int x = top_k - 1; x > j; x--) {
+                        maxIndex[x] = maxIndex[x-1]; max[x] = max[x-1];
+                    }
+                    maxIndex[j] = i; max[j] = array[i];
+                    continue top;
+                }
+            }
+        }
+        return maxIndex;
     }
 }
 

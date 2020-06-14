@@ -33,10 +33,6 @@ public class Phone implements Serializable {
 
     public void buy() {this.sold += 1;}
 
-    public int getSold(){
-        return sold;
-    }
-
     public int getCover(){
         return CoverAddr;
     }

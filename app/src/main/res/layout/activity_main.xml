@@ -8,17 +8,53 @@
     android:padding="10dp"
     tools:context=".MainActivity">
 
-    <!-- 等下再做
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="18dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lvPhones"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Top Picks" />
     </ScrollView>
-    -->
+
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="172dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="56dp"
+                android:layout_height="162dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="56dp"
+                android:layout_height="162dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="56dp"
+                android:layout_height="165dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+    </ScrollView>
 
     <ListView
         android:id="@+id/lvBrands"

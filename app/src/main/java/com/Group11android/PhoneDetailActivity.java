@@ -46,7 +46,6 @@ public class PhoneDetailActivity extends AppCompatActivity {
 
         Intent thisIntent = getIntent();
         // Use the phone to populate the data into our views
-        System.out.println("5555500000");
         final Phone phone = (Phone) thisIntent.getSerializableExtra(BrandDetailActivity.PHONE_DETAIL_KEY);
         loadPhone(phone);
         button.setOnClickListener(new View.OnClickListener() {
